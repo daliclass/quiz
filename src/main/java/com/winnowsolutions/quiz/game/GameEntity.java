@@ -8,8 +8,8 @@ import java.util.List;
 public class GameEntity {
     private final List<QuestionEntity> questionEntities;
     private final UUID gameGuid;
-    private final Integer questionNumber;
-    private final Integer quoteNumber;
+    private Integer questionNumber;
+    private Integer quoteNumber;
 
     public GameEntity(List<QuestionEntity> questionEntities) {
         this.questionEntities = questionEntities;
@@ -18,7 +18,19 @@ public class GameEntity {
         this.quoteNumber = 0;
     }
 
+    public GameEntity(List<QuestionEntity> questionEntities,
+                      UUID gameGuid,
+                      Integer questionNumber,
+                      Integer quoteNumber) {
+        this.questionEntities = questionEntities;
+        this.gameGuid = gameGuid;
+        this.questionNumber = questionNumber;
+        this.quoteNumber = quoteNumber;
+    }
+
     public QuestionEntity getCurrentQuestion() {
+        if (questionNumber >= questionEntities.size())
+            return null;
         return questionEntities.get(questionNumber);
     }
 
@@ -40,5 +52,9 @@ public class GameEntity {
 
     public String getCurrentQuote() {
         return questionEntities.get(questionNumber).getQuotes().get(quoteNumber);
+    }
+
+    public void nextQuestion() {
+        this.questionNumber = questionNumber + 1;
     }
 }

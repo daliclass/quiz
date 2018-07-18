@@ -40,4 +40,25 @@ public class GameEntityTest {
 
         assertEquals(QUOTE_1, gameEntity.getCurrentQuote());
     }
+
+    @Test
+    public void whenCallingNextQuestionThenMoveCurrentQuestionToTheNextQuestion() {
+        List<QuestionEntity> questionEntityList = new ArrayList(){{
+            add(new QuestionEntity("Shia", POPULATED_QUOTES, EMPTY_ANSWERS));
+            add(new QuestionEntity("Callum", EMPTY_QUOTES, EMPTY_ANSWERS));
+        }};
+        GameEntity gameEntity = new GameEntity(questionEntityList);
+        gameEntity.nextQuestion();
+        assertEquals(questionEntityList.get(1), gameEntity.getCurrentQuestion());
+    }
+
+    @Test
+    public void whenCallingNextQuestionWhenThereIsNotAnotherQuestionThenReturnNull() {
+        List<QuestionEntity> questionEntityList = new ArrayList(){{
+            add(new QuestionEntity("Callum", EMPTY_QUOTES, EMPTY_ANSWERS));
+        }};
+        GameEntity gameEntity = new GameEntity(questionEntityList);
+        gameEntity.nextQuestion();
+        assertEquals(null, gameEntity.getCurrentQuestion());
+    }
 }

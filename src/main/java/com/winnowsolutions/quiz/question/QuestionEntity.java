@@ -32,5 +32,4 @@ public class QuestionEntity {
     public List<String> getIncorrectAnswers() {
         return incorrectAnswers;
     }
-
 }
