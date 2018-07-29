@@ -64,4 +64,15 @@ public class Game {
             return false;
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        Game game = (Game) o;
+        if (questions.equals(game.questions) &&
+                gameGuid.equals(game.gameGuid) &&
+                questionNumber.equals(game.questionNumber) &&
+                quoteNumber.equals(game.quoteNumber))
+            return true;
+        return false;
+    }
 }

@@ -9,7 +9,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class GameEntityTest {
+public class GameTestEntityTest {
 
     private final List<String> EMPTY_QUOTES = new ArrayList<String>();
     private final List<String> EMPTY_ANSWERS = new ArrayList<String>();

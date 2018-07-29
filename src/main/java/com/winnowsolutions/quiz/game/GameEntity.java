@@ -43,7 +43,7 @@ public class GameEntity {
     }
 
     public Integer getQuoteNumber() {
-        return questionNumber;
+        return quoteNumber;
     }
 
     public Integer getNumberOfQuestions() {
