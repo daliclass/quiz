@@ -7,7 +7,6 @@ import com.winnowsolutions.quiz.question.QuestionEntity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class AnswerQuestion {
@@ -22,7 +21,9 @@ public class AnswerQuestion {
         Game game = gameRepository.getGame(gameGuid);
         GameEntity gameEntity = convertToGameEntity(game);
 
+        gameEntity.answerQuestion(answer);
         gameEntity.nextQuestion();
+
         gameRepository.updateGame(convertToGame(convertToQuestionEntities(game.getQuestions()), gameEntity));
         return convertToTurn(gameEntity);
     }
@@ -41,7 +42,8 @@ public class AnswerQuestion {
                 gameQuestions,
                 gameEntity.getGameGuid(),
                 gameEntity.getQuestionNumber(),
-                gameEntity.getQuoteNumber());
+                gameEntity.getQuoteNumber(),
+                gameEntity.getQuestionAnswers());
 
         return game;
     }

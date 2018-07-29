@@ -12,6 +12,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -90,7 +91,7 @@ public class CreateNewGameTestTest {
             gameQuestions.add(new Game.Question(CELEBRITY_NAME + i, QUOTES, EMPTY_ANSWERS));
         }
 
-        Game game = new Game(gameQuestions, UUID.randomUUID(), 0, 0);
+        Game game = new Game(gameQuestions, UUID.randomUUID(), 0, 0, new HashMap());
 
         return game;
     }

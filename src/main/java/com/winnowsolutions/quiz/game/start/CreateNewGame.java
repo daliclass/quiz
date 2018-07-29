@@ -61,7 +61,8 @@ public class CreateNewGame {
                 gameQuestions,
                 UUID.randomUUID(),
                 gameEntity.getQuestionNumber(),
-                gameEntity.getQuoteNumber());
+                gameEntity.getQuoteNumber(),
+                gameEntity.getQuestionAnswers());
 
         return game;
     }

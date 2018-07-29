@@ -4,6 +4,7 @@ import com.winnowsolutions.quiz.game.Game;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -35,6 +36,6 @@ public class GameTest {
 
         Integer questionNumber = 1;
         Integer quoteNumber = 1;
-        return new Game(questions, gameUuid, questionNumber, quoteNumber);
+        return new Game(questions, gameUuid, questionNumber, quoteNumber, new HashMap() {{put(1, new ArrayList(){{add("ANSWERS");}});}});
     }
 }

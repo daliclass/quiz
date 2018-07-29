@@ -1,6 +1,7 @@
 package com.winnowsolutions.quiz.game;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public class Game {
@@ -8,12 +9,19 @@ public class Game {
     private final UUID gameGuid;
     private final Integer questionNumber;
     private final Integer quoteNumber;
+    private Map<Integer, List<String>> questionAnswers;
 
-    public Game(List<Question> questions, UUID gameGuid, Integer questionNumber, Integer quoteNumber) {
+
+    public Game(List<Question> questions,
+                UUID gameGuid,
+                Integer questionNumber,
+                Integer quoteNumber,
+                Map<Integer, List<String>> questionAnswers) {
         this.questions = questions;
         this.gameGuid = gameGuid;
         this.questionNumber = questionNumber;
         this.quoteNumber = quoteNumber;
+        this.questionAnswers = questionAnswers;
     }
 
     public List<Question> getQuestions() {
@@ -71,7 +79,8 @@ public class Game {
         if (questions.equals(game.questions) &&
                 gameGuid.equals(game.gameGuid) &&
                 questionNumber.equals(game.questionNumber) &&
-                quoteNumber.equals(game.quoteNumber))
+                quoteNumber.equals(game.quoteNumber) &&
+                questionAnswers.equals(game.questionAnswers))
             return true;
         return false;
     }

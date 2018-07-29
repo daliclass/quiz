@@ -8,9 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
@@ -23,6 +21,17 @@ public class AnswerQuestionTest {
     final String ANSWER = "ANSWER";
     final String ANSWER_QUESTION_TWO = "ANSWER_2";
     final String QUOTE = "Look what you made me do";
+    Map<Integer, List<String>> uninitialisedQuestionAnswers = new HashMap() {{
+        put(0, new ArrayList());
+        put(1, new ArrayList());
+    }};
+
+    Map<Integer, List<String>> expectedQuestionAnswers = new HashMap() {{
+        put(0, new ArrayList() {{
+            add(ANSWER);
+        }});
+        put(1, new ArrayList());
+    }};
 
     @Mock
     GameRepository gameRepository;
@@ -43,7 +52,7 @@ public class AnswerQuestionTest {
             add(new Game.Question(ANSWER_QUESTION_TWO, quotes, incorrectAnswers));
         }};
 
-        Game game = new Game(questions, UUID.fromString(GAME_GUID), questionNumber, quoteNumber);
+        Game game = new Game(questions, UUID.fromString(GAME_GUID), questionNumber, quoteNumber, uninitialisedQuestionAnswers);
         when(gameRepository.getGame(GAME_GUID)).thenReturn(game);
         AnswerQuestion answerQuestion = new AnswerQuestion(gameRepository);
 
@@ -62,12 +71,20 @@ public class AnswerQuestionTest {
             add(new Game.Question(ANSWER_QUESTION_TWO, quotes, incorrectAnswers));
         }};
 
-        Game game = new Game(questions, UUID.fromString(GAME_GUID), questionNumber, quoteNumber);
+        Game game = new Game(
+                questions,
+                UUID.fromString(GAME_GUID),
+                questionNumber,
+                quoteNumber,
+                uninitialisedQuestionAnswers);
+
         Game expectedGame = new Game(
                 questions,
                 UUID.fromString(GAME_GUID),
                 questionNumber + 1,
-                quoteNumber);
+                quoteNumber,
+                expectedQuestionAnswers);
+
         when(gameRepository.getGame(GAME_GUID)).thenReturn(game);
         AnswerQuestion answerQuestion = new AnswerQuestion(gameRepository);
 
