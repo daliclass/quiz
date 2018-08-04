@@ -11,7 +11,6 @@ public class Game {
     private final Integer quoteNumber;
     private Map<Integer, List<String>> questionAnswers;
 
-
     public Game(List<Question> questions,
                 UUID gameGuid,
                 Integer questionNumber,
@@ -38,6 +37,10 @@ public class Game {
 
     public Integer getQuoteNumber() {
         return quoteNumber;
+    }
+
+    public Map<Integer, List<String>> getQuestionAnswers() {
+        return questionAnswers;
     }
 
     public static class Question {

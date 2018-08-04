@@ -8,6 +8,7 @@ public class QuestionEntity {
     private final String celebrityName;
     private final List<String> quotes;
     private final List<String> incorrectAnswers;
+    private Double score;
 
     public QuestionEntity(String celebrityName, List<String> quotes, List<String> incorrectAnswers) {
         this.celebrityName = celebrityName;

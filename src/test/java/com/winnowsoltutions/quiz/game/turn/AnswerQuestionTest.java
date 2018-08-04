@@ -33,6 +33,10 @@ public class AnswerQuestionTest {
         put(1, new ArrayList());
     }};
 
+    List<String> quotes = new ArrayList() {{add(QUOTE);}};
+
+    List<String> incorrectAnswers = new ArrayList();
+
     @Mock
     GameRepository gameRepository;
 
@@ -43,8 +47,6 @@ public class AnswerQuestionTest {
 
     @Test
     public void whenUserIsAnsweringAQuestionAndTheyAreNotOnTheLastQuestionThenProvideThemTheNextTurn() {
-        List<String> quotes = new ArrayList() {{add(QUOTE);}};
-        List<String> incorrectAnswers = new ArrayList();
         Integer questionNumber = 0;
         Integer quoteNumber = 0;
         List<Game.Question> questions = new ArrayList(){{
@@ -61,9 +63,24 @@ public class AnswerQuestionTest {
     }
 
     @Test
+    public void whenUserIsAnsweringTheLastQuestionThenProvideThemWithABlankTurn() {
+        Integer questionNumber = 2;
+        Integer quoteNumber = 0;
+        List<Game.Question> questions = new ArrayList(){{
+            add(new Game.Question(ANSWER, quotes, incorrectAnswers));
+            add(new Game.Question(ANSWER_QUESTION_TWO, quotes, incorrectAnswers));
+        }};
+
+        Game game = new Game(questions, UUID.fromString(GAME_GUID), questionNumber, quoteNumber, uninitialisedQuestionAnswers);
+        when(gameRepository.getGame(GAME_GUID)).thenReturn(game);
+        AnswerQuestion answerQuestion = new AnswerQuestion(gameRepository);
+
+        Turn turn = answerQuestion.answer(GAME_GUID, ANSWER);
+        assertEquals(blankTurn(), turn);
+    }
+
+    @Test
     public void whenUserIsAnsweringAQuestionThenSaveTheGame() {
-        List<String> quotes = new ArrayList() {{add(QUOTE);}};
-        List<String> incorrectAnswers = new ArrayList();
         Integer questionNumber = 0;
         Integer quoteNumber = 0;
         List<Game.Question> questions = new ArrayList(){{
@@ -98,6 +115,16 @@ public class AnswerQuestionTest {
         expectedTurn.potentialAnswers = new ArrayList() {{add(ANSWER_QUESTION_TWO);}};
         expectedTurn.numberOfQuestions = 2;
         expectedTurn.questionNumber = 1;
+        expectedTurn.gameGuid = GAME_GUID;
+        return expectedTurn;
+    }
+
+    private Turn blankTurn() {
+        Turn expectedTurn = new Turn();
+        expectedTurn.quote = "";
+        expectedTurn.potentialAnswers = new ArrayList();
+        expectedTurn.numberOfQuestions = 2;
+        expectedTurn.questionNumber = 2;
         expectedTurn.gameGuid = GAME_GUID;
         return expectedTurn;
     }
