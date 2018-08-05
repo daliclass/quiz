@@ -19,7 +19,7 @@ public class CalculateSummary {
     }
 
     public GameSummary forGameGuid(UUID gameGuid) {
-        Game game = gameRepository.getGame(gameGuid.toString());
+        Game game = gameRepository.getGame(gameGuid);
         GameEntity gameEntity = convertGameToGameEntity.apply(game);
         return new GameSummary(gameGuid, gameEntity.getScore(), gameEntity.getNumberOfQuestions());
     }

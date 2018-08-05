@@ -19,7 +19,7 @@ public class InMemoryGameRepositoryTest {
         GameRepository gameRepository = new InMemoryGameRepository();
         gameRepository.createGame(expectedGame);
 
-        assertEquals(expectedGame, gameRepository.getGame(gameUuid.toString()));
+        assertEquals(expectedGame, gameRepository.getGame(gameUuid));
     }
 
     @Test
@@ -31,6 +31,6 @@ public class InMemoryGameRepositoryTest {
         gameRepository.createGame(updatedGame);
         gameRepository.updateGame(expectedGame);
 
-        assertEquals(expectedGame, gameRepository.getGame(gameUuid.toString()));
+        assertEquals(expectedGame, gameRepository.getGame(gameUuid));
     }
 }

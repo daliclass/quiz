@@ -8,6 +8,7 @@ import com.winnowsolutions.quiz.game.entities.QuestionEntity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -22,7 +23,7 @@ public class AnswerQuestion {
     }
 
     public Turn answer(String gameGuid, String answer) {
-        Game game = gameRepository.getGame(gameGuid);
+        Game game = gameRepository.getGame(UUID.fromString(gameGuid));
         GameEntity gameEntity = convertToGameEntity.apply(game);
 
         if(gameEntity.isComplete()) {

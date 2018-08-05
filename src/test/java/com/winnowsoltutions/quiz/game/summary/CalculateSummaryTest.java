@@ -25,7 +25,7 @@ public class CalculateSummaryTest {
     @Test
     public void givenAUserHasCompletedAGameWhenCreatingTheGameSummaryThenCalculateTheUsersScore() {
         Game completedGame = GameTestHelper.createCompletedGame();
-        when(gameRepository.getGame(completedGame.getGameGuid().toString())).thenReturn(completedGame);
+        when(gameRepository.getGame(completedGame.getGameGuid())).thenReturn(completedGame);
         CalculateSummary calculateSummary = new CalculateSummary(gameRepository);
         CalculateSummary.GameSummary gameSummary = calculateSummary.forGameGuid(completedGame.getGameGuid());
         CalculateSummary.GameSummary expectedGameSummary =
@@ -41,7 +41,7 @@ public class CalculateSummaryTest {
     @Test
     public void givenAUserHasNotCompletedAGameWhenRequestingTheGameSummaryThenGetTheStateOfThereCurrentGame() {
         Game incompleteGame = GameTestHelper.createIncompleteGame();
-        when(gameRepository.getGame(incompleteGame.getGameGuid().toString())).thenReturn(incompleteGame);
+        when(gameRepository.getGame(incompleteGame.getGameGuid())).thenReturn(incompleteGame);
         CalculateSummary calculateSummary = new CalculateSummary(gameRepository);
         CalculateSummary.GameSummary gameSummary = calculateSummary.forGameGuid(incompleteGame.getGameGuid());
         CalculateSummary.GameSummary expectedGameSummary =

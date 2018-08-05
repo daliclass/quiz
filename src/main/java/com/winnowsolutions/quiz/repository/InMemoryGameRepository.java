@@ -18,8 +18,8 @@ public class InMemoryGameRepository implements GameRepository {
     }
 
     @Override
-    public Game getGame(String gameGuid) {
-        return gameStore.get(UUID.fromString(gameGuid));
+    public Game getGame(UUID gameGuid) {
+        return gameStore.get(gameGuid);
     }
 
     @Override

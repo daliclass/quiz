@@ -17,7 +17,7 @@ import static org.mockito.MockitoAnnotations.initMocks;
 
 public class AnswerQuestionTest {
 
-    final String GAME_GUID = UUID.randomUUID().toString();
+    final UUID GAME_GUID = UUID.randomUUID();
     final String ANSWER = "ANSWER";
     final String ANSWER_QUESTION_TWO = "ANSWER_2";
     final String QUOTE = "Look what you made me do";
@@ -54,11 +54,11 @@ public class AnswerQuestionTest {
             add(new Game.Question(ANSWER_QUESTION_TWO, quotes, incorrectAnswers));
         }};
 
-        Game game = new Game(questions, UUID.fromString(GAME_GUID), questionNumber, quoteNumber, uninitialisedQuestionAnswers);
+        Game game = new Game(questions, GAME_GUID, questionNumber, quoteNumber, uninitialisedQuestionAnswers);
         when(gameRepository.getGame(GAME_GUID)).thenReturn(game);
         AnswerQuestion answerQuestion = new AnswerQuestion(gameRepository);
 
-        Turn turn = answerQuestion.answer(GAME_GUID, ANSWER);
+        Turn turn = answerQuestion.answer(GAME_GUID.toString(), ANSWER);
         assertEquals(expectedTurn(), turn);
     }
 
@@ -71,11 +71,11 @@ public class AnswerQuestionTest {
             add(new Game.Question(ANSWER_QUESTION_TWO, quotes, incorrectAnswers));
         }};
 
-        Game game = new Game(questions, UUID.fromString(GAME_GUID), questionNumber, quoteNumber, uninitialisedQuestionAnswers);
+        Game game = new Game(questions, GAME_GUID, questionNumber, quoteNumber, uninitialisedQuestionAnswers);
         when(gameRepository.getGame(GAME_GUID)).thenReturn(game);
         AnswerQuestion answerQuestion = new AnswerQuestion(gameRepository);
 
-        Turn turn = answerQuestion.answer(GAME_GUID, ANSWER);
+        Turn turn = answerQuestion.answer(GAME_GUID.toString(), ANSWER);
         assertEquals(blankTurn(), turn);
     }
 
@@ -90,14 +90,14 @@ public class AnswerQuestionTest {
 
         Game game = new Game(
                 questions,
-                UUID.fromString(GAME_GUID),
+                GAME_GUID,
                 questionNumber,
                 quoteNumber,
                 uninitialisedQuestionAnswers);
 
         Game expectedGame = new Game(
                 questions,
-                UUID.fromString(GAME_GUID),
+                GAME_GUID,
                 questionNumber + 1,
                 quoteNumber,
                 expectedQuestionAnswers);
@@ -105,7 +105,7 @@ public class AnswerQuestionTest {
         when(gameRepository.getGame(GAME_GUID)).thenReturn(game);
         AnswerQuestion answerQuestion = new AnswerQuestion(gameRepository);
 
-        answerQuestion.answer(GAME_GUID, ANSWER);
+        answerQuestion.answer(GAME_GUID.toString(), ANSWER);
         verify(gameRepository).updateGame(expectedGame);
     }
 
@@ -115,7 +115,7 @@ public class AnswerQuestionTest {
         expectedTurn.potentialAnswers = new ArrayList() {{add(ANSWER_QUESTION_TWO);}};
         expectedTurn.numberOfQuestions = 2;
         expectedTurn.questionNumber = 1;
-        expectedTurn.gameGuid = GAME_GUID;
+        expectedTurn.gameGuid = GAME_GUID.toString();
         return expectedTurn;
     }
 
@@ -125,7 +125,7 @@ public class AnswerQuestionTest {
         expectedTurn.potentialAnswers = new ArrayList();
         expectedTurn.numberOfQuestions = 2;
         expectedTurn.questionNumber = 2;
-        expectedTurn.gameGuid = GAME_GUID;
+        expectedTurn.gameGuid = GAME_GUID.toString();
         return expectedTurn;
     }
 }
