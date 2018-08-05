@@ -1,7 +1,7 @@
-package com.winnowsoltutions.quiz.game;
+package com.winnowsoltutions.quiz.game.common;
 
-import com.winnowsolutions.quiz.game.GameEntity;
-import com.winnowsolutions.quiz.question.QuestionEntity;
+import com.winnowsolutions.quiz.game.entities.GameEntity;
+import com.winnowsolutions.quiz.game.entities.QuestionEntity;
 import org.junit.Test;
 
 import java.util.ArrayList;

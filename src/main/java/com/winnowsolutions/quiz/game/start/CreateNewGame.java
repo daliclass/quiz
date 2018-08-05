@@ -1,10 +1,10 @@
 package com.winnowsolutions.quiz.game.start;
 
-import com.winnowsolutions.quiz.game.Game;
-import com.winnowsolutions.quiz.game.GameEntity;
-import com.winnowsolutions.quiz.game.GameRepository;
+import com.winnowsolutions.quiz.repository.Game;
+import com.winnowsolutions.quiz.game.entities.GameEntity;
+import com.winnowsolutions.quiz.repository.GameRepository;
 import com.winnowsolutions.quiz.question.Question;
-import com.winnowsolutions.quiz.question.QuestionEntity;
+import com.winnowsolutions.quiz.game.entities.QuestionEntity;
 import com.winnowsolutions.quiz.question.QuestionService;
 import com.winnowsolutions.quiz.game.turn.Turn;
 

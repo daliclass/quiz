@@ -1,6 +1,6 @@
-package com.winnowsoltutions.quiz.game;
+package com.winnowsoltutions.quiz.repository;
 
-import com.winnowsolutions.quiz.game.Game;
+import com.winnowsolutions.quiz.repository.Game;
 import org.junit.Test;
 
 import java.util.ArrayList;

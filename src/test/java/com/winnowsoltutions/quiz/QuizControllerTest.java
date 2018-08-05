@@ -1,7 +1,7 @@
-package com.winnowsoltutions.quiz.game;
+package com.winnowsoltutions.quiz;
 
 import com.winnowsolutions.quiz.game.start.CreateNewGame;
-import com.winnowsolutions.quiz.game.GameController;
+import com.winnowsolutions.quiz.QuizController;
 import com.winnowsolutions.quiz.game.turn.AnswerQuestion;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,7 +11,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 
-public class GameTestControllerTest {
+public class QuizControllerTest {
 
     @Mock
     CreateNewGame createNewGame;
@@ -26,18 +26,18 @@ public class GameTestControllerTest {
 
     @Test
     public void whenANewGameIsRequestedThenTheNewGameUseCaseIsCalled() {
-        GameController gameController = new GameController(createNewGame, answerQuestion);
-        gameController.newGame();
+        QuizController quizController = new QuizController(createNewGame, answerQuestion);
+        quizController.newGame();
 
         verify(createNewGame).startGame(10);
     }
 
     @Test
     public void whenAPlayerAnswersAQuestionThenCallTheAnswerQuestionUseCase() {
-        GameController gameController = new GameController(createNewGame, answerQuestion);
+        QuizController quizController = new QuizController(createNewGame, answerQuestion);
         final String gameGuid = "game-guid";
         final String answer = "answer";
-        gameController.answerQuestion(gameGuid, answer);
+        quizController.answerQuestion(gameGuid, answer);
 
         verify(answerQuestion).answer(gameGuid, answer);
     }

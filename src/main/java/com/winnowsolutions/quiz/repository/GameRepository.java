@@ -1,4 +1,4 @@
-package com.winnowsolutions.quiz.game;
+package com.winnowsolutions.quiz.repository;
 
 public interface GameRepository {
     void createGame(Game game);

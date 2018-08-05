@@ -1,4 +1,4 @@
-package com.winnowsolutions.quiz.game;
+package com.winnowsolutions.quiz.repository;
 
 import java.util.List;
 import java.util.Map;

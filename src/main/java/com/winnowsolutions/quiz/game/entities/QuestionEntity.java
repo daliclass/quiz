@@ -1,4 +1,4 @@
-package com.winnowsolutions.quiz.question;
+package com.winnowsolutions.quiz.game.entities;
 
 import java.util.ArrayList;
 import java.util.Collections;

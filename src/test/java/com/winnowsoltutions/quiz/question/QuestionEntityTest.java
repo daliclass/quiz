@@ -1,6 +1,6 @@
 package com.winnowsoltutions.quiz.question;
 
-import com.winnowsolutions.quiz.question.QuestionEntity;
+import com.winnowsolutions.quiz.game.entities.QuestionEntity;
 import org.junit.Test;
 
 import java.util.ArrayList;

@@ -1,15 +1,15 @@
-package com.winnowsolutions.quiz.game;
+package com.winnowsolutions.quiz;
 
 import com.winnowsolutions.quiz.game.start.CreateNewGame;
 import com.winnowsolutions.quiz.game.turn.AnswerQuestion;
 import com.winnowsolutions.quiz.game.turn.Turn;
 
-public class GameController {
+public class QuizController {
     private final static Integer NUMBER_OF_QUESTIONS = 10;
     private final CreateNewGame createNewGame;
     private final AnswerQuestion answerQuestion;
 
-    public GameController(CreateNewGame createNewGame, AnswerQuestion answerQuestion) {
+    public QuizController(CreateNewGame createNewGame, AnswerQuestion answerQuestion) {
         this.createNewGame = createNewGame;
         this.answerQuestion = answerQuestion;
     }

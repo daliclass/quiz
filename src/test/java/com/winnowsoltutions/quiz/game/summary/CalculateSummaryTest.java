@@ -1,7 +1,8 @@
-package com.winnowsoltutions.quiz.summary;
+package com.winnowsoltutions.quiz.game.summary;
 
-import com.winnowsolutions.quiz.game.Game;
-import com.winnowsolutions.quiz.game.GameRepository;
+import com.winnowsolutions.quiz.repository.Game;
+import com.winnowsolutions.quiz.repository.GameRepository;
+import com.winnowsolutions.quiz.game.summary.CalculateSummary;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;

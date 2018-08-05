@@ -1,7 +1,7 @@
 package com.winnowsoltutions.quiz.game.turn;
 
-import com.winnowsolutions.quiz.game.Game;
-import com.winnowsolutions.quiz.game.GameRepository;
+import com.winnowsolutions.quiz.repository.Game;
+import com.winnowsolutions.quiz.repository.GameRepository;
 import com.winnowsolutions.quiz.game.turn.AnswerQuestion;
 import com.winnowsolutions.quiz.game.turn.Turn;
 import org.junit.Before;

@@ -1,6 +1,8 @@
-package com.winnowsolutions.quiz.game;
+package com.winnowsolutions.quiz.game.common;
 
-import com.winnowsolutions.quiz.question.QuestionEntity;
+import com.winnowsolutions.quiz.game.entities.GameEntity;
+import com.winnowsolutions.quiz.game.entities.QuestionEntity;
+import com.winnowsolutions.quiz.repository.Game;
 
 import java.util.List;
 import java.util.function.Function;
