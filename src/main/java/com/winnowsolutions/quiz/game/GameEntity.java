@@ -49,18 +49,18 @@ public class GameEntity {
 
     public Double getScore() {
         Double score = 0.0;
-        for (int question = 0; question < questionEntities.size(); question++) {
-            score += calculateQuestionScore(question);
+        for (int answeredQuestion = 0; answeredQuestion < questionAnswers.size(); answeredQuestion++) {
+            score += calculateQuestionScore(answeredQuestion);
         }
         return score;
     }
 
-    private Double calculateQuestionScore(Integer question) {
-        String celebrityName = questionEntities.get(question).getCelebrityName();
-        if (!questionAnswers.get(question).contains(celebrityName)) {
+    private Double calculateQuestionScore(Integer answeredQuestion) {
+        String celebrityName = questionEntities.get(answeredQuestion).getCelebrityName();
+        if (!questionAnswers.get(answeredQuestion).contains(celebrityName)) {
             return 0.0;
         }
-        return 1.0 / questionAnswers.get(question).size();
+        return 1.0 / questionAnswers.get(answeredQuestion).size();
     }
 
     public Boolean isComplete() {

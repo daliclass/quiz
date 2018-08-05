@@ -72,6 +72,37 @@ public class CalculateSummaryTest {
         return new Game(questions, gameUuid, questionNumber, quoteNumber, questionAnswers);
     }
 
-    public void givenAUserHasNotCompletedAGameWhenRequestingTheGameSummaryThenReturnAErrorValue() {
+    @Test
+    public void givenAUserHasNotCompletedAGameWhenRequestingTheGameSummaryThenGetTheStateOfThereCurrentGame() {
+        Game incompleteGame = createIncompleteGame();
+        when(gameRepository.getGame(incompleteGame.getGameGuid().toString())).thenReturn(incompleteGame);
+        CalculateSummary calculateSummary = new CalculateSummary(gameRepository);
+        CalculateSummary.GameSummary gameSummary = calculateSummary.forGameGuid(incompleteGame.getGameGuid());
+        CalculateSummary.GameSummary expectedGameSummary =
+                new CalculateSummary.GameSummary(
+                        incompleteGame.getGameGuid(),
+                        0.5,
+                        3
+                );
+
+        assertEquals(expectedGameSummary, gameSummary);
+    }
+
+    private Game createIncompleteGame() {
+        String adam = "Adam";
+        String jill = "Jill";
+        UUID gameUuid = UUID.randomUUID();
+        Integer questionNumber = 1;
+        Integer quoteNumber = 0;
+        List<Game.Question> questions = new ArrayList(){{
+            add(new Game.Question(adam, null, null));
+            add(new Game.Question(adam, null, null));
+            add(new Game.Question(adam, null, null));
+        }};
+        Map<Integer, List<String>> questionAnswers = new HashMap() {{
+            put(0, new ArrayList(){{ add(jill); add(adam); }});
+        }};
+
+        return new Game(questions, gameUuid, questionNumber, quoteNumber, questionAnswers);
     }
 }
