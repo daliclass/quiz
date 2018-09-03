@@ -3,8 +3,12 @@ package com.winnowsolutions.quiz.question;
 import java.util.List;
 
 public class Question {
-    private final String celebrityName;
-    private final List<String> quotes;
+    private String celebrityName;
+    private List<String> quotes;
+
+    public Question() {
+
+    }
 
     public Question(String celebrityName, List<String> quotes) {
         this.celebrityName = celebrityName;
@@ -17,5 +21,19 @@ public class Question {
 
     public List<String> getQuotes() {
         return quotes;
+    }
+
+    public void setCelebrityName(String celebrityName) {
+        this.celebrityName = celebrityName;
+    }
+
+    public void setQuotes(List<String> quotes) {
+        this.quotes = quotes;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        Question otherQuestion = (Question) other;
+        return this.celebrityName.equals(otherQuestion.celebrityName) && this.quotes.equals(otherQuestion.quotes);
     }
 }

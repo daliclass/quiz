@@ -34,7 +34,6 @@ public class CalculateSummaryTest {
                             4.5,
                             10
                         );
-
         assertEquals(expectedGameSummary, gameSummary);
     }
 

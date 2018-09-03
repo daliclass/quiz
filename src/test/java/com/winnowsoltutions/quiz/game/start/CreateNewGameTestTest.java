@@ -76,7 +76,7 @@ public class CreateNewGameTestTest {
     }
 
     private List<Question> getQuestions() {
-        List<Question> questions = new ArrayList<Question>();
+        List<Question> questions = new ArrayList();
 
         for (int i = 0; i < NUMBER_OF_QUESTIONS; i++) {
             questions.add(new Question(CELEBRITY_NAME + i, QUOTES));
@@ -94,25 +94,5 @@ public class CreateNewGameTestTest {
         Game game = new Game(gameQuestions, UUID.randomUUID(), 0, 0, new HashMap());
 
         return game;
-    }
-
-    @Test
-    public void whenCreatingANewGameThenStoreTheNewGameInTheQuestionService() {
-        List<Question> questions = getQuestions();
-        when(questionService.getQuestions(NUMBER_OF_QUESTIONS)).thenReturn(questions);
-
-        CreateNewGame createNewGame = new CreateNewGame(questionService, gameRepository);
-        createNewGame.startGame(NUMBER_OF_QUESTIONS);
-
-        ArgumentCaptor<Game> captor = ArgumentCaptor.forClass(Game.class);
-
-        verify(gameRepository).createGame(captor.capture());
-        Game expectedGame = getGame();
-        Game actualGame = captor.getValue();
-
-        assertEquals(expectedGame.getQuestions(), actualGame.getQuestions());
-        assertEquals(expectedGame.getQuestionNumber(), actualGame.getQuoteNumber());
-        assertEquals(expectedGame.getQuoteNumber(), actualGame.getQuoteNumber());
-        assertTrue("GameGuid is not null" ,actualGame.getGameGuid() != null);
     }
 }

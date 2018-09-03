@@ -32,7 +32,7 @@ public class CreateNewGame {
     }
 
     private List<QuestionEntity> convertToListQuestionEntity(List<Question> questions) {
-        List<QuestionEntity> questionEntities = new ArrayList<QuestionEntity>();
+        List<QuestionEntity> questionEntities = new ArrayList();
         for (Question question : questions) {
             questionEntities.add(convertToQuestionEntity(question));
         }
@@ -57,14 +57,12 @@ public class CreateNewGame {
                     questionEntity.getIncorrectAnswers()));
         }
 
-        Game game = new Game(
+        return new Game(
                 gameQuestions,
                 UUID.randomUUID(),
                 gameEntity.getQuestionNumber(),
                 gameEntity.getQuoteNumber(),
                 gameEntity.getQuestionAnswers());
-
-        return game;
     }
 
     private Turn convertToTurn(GameEntity gameEntity) {
