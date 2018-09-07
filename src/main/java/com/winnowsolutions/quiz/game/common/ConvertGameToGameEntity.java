@@ -14,7 +14,7 @@ public class ConvertGameToGameEntity implements Function<Game, GameEntity> {
     public GameEntity apply(Game game) {
         return new GameEntity(
                 convertToQuestionEntities(game.getQuestions()),
-                game.getGameGuid(),
+                game.getgameUUID(),
                 game.getQuestionNumber(),
                 game.getQuoteNumber(),
                 game.getQuestionAnswers());

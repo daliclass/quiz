@@ -5,7 +5,7 @@ import java.util.*;
 
 public class GameEntity {
     private final List<QuestionEntity> questionEntities;
-    private final UUID gameGuid;
+    private final UUID gameUUID;
     private Integer questionNumber;
     private Integer quoteNumber;
     private Map<Integer, List<String>> questionAnswers;
@@ -15,23 +15,23 @@ public class GameEntity {
     }
 
     public GameEntity(List<QuestionEntity> questionEntities,
-                      UUID gameGuid,
+                      UUID gameUUID,
                       Integer questionNumber,
                       Integer quoteNumber) {
         this.questionEntities = questionEntities;
-        this.gameGuid = gameGuid;
+        this.gameUUID = gameUUID;
         this.questionNumber = questionNumber;
         this.quoteNumber = quoteNumber;
         this.questionAnswers = initialiseMap(questionEntities);
     }
 
     public GameEntity(List<QuestionEntity> questionEntities,
-                      UUID gameGuid,
+                      UUID gameUUID,
                       Integer questionNumber,
                       Integer quoteNumber,
                       Map<Integer, List<String>> questionAnswers) {
         this.questionEntities = questionEntities;
-        this.gameGuid = gameGuid;
+        this.gameUUID = gameUUID;
         this.questionNumber = questionNumber;
         this.quoteNumber = quoteNumber;
         this.questionAnswers = questionAnswers;
@@ -81,8 +81,8 @@ public class GameEntity {
         return questionEntities.get(questionNumber);
     }
 
-    public UUID getGameGuid() {
-        return gameGuid;
+    public UUID getgameUUID() {
+        return gameUUID;
     }
 
     public Integer getQuestionNumber() {

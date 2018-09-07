@@ -1,20 +1,18 @@
 package com.winnowsoltutions.quiz.game.start;
 
 import com.winnowsolutions.quiz.game.start.CreateNewGame;
-import com.winnowsolutions.quiz.repository.Game;
 import com.winnowsolutions.quiz.repository.GameRepository;
 import com.winnowsolutions.quiz.game.turn.Turn;
 import com.winnowsolutions.quiz.question.Question;
 import com.winnowsolutions.quiz.question.QuestionService;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -32,7 +30,6 @@ public class CreateNewGameTestTest {
 
     private final String CELEBRITY_NAME = "Justin Beiber";
     private final List<String> QUOTES = new ArrayList() {{add("What do you mean?");}};
-    private final List<String> EMPTY_ANSWERS = new ArrayList();
     private final Integer NUMBER_OF_QUESTIONS = 10;
 
     @Before
@@ -55,19 +52,18 @@ public class CreateNewGameTestTest {
         CreateNewGame createNewGame = new CreateNewGame(questionService, gameRepository);
 
         Turn expectedTurn = new Turn();
-        expectedTurn.gameGuid = "";
+        expectedTurn.gameUUID = UUID.randomUUID();
         expectedTurn.numberOfQuestions = NUMBER_OF_QUESTIONS;
         expectedTurn.questionNumber = 0;
         expectedTurn.quote = questions.get(0).getQuotes().get(0);
-        expectedTurn.potentialAnswers = new ArrayList<String>(celebrityNames){{
-            add(questions.get(0).getCelebrityName());
-        }};
+        celebrityNames.add(questions.get(0).getCelebrityName());
+        expectedTurn.potentialAnswers = new ArrayList(celebrityNames);
 
         validateTurn(expectedTurn, createNewGame.startGame(NUMBER_OF_QUESTIONS));
     }
 
     private void validateTurn(Turn expectedTurn, Turn actualTurn) {
-        assertTrue("GameGuid is not null" ,actualTurn.gameGuid != null);
+        assertTrue("gameUUID is not null" ,actualTurn.gameUUID != null);
         assertEquals(expectedTurn.numberOfQuestions, actualTurn.numberOfQuestions);
         assertEquals(expectedTurn.questionNumber, actualTurn.questionNumber);
         assertEquals(expectedTurn.quote, actualTurn.quote);
@@ -82,17 +78,5 @@ public class CreateNewGameTestTest {
             questions.add(new Question(CELEBRITY_NAME + i, QUOTES));
         }
         return questions;
-    }
-
-    private Game getGame() {
-        List<Game.Question> gameQuestions = new ArrayList();
-
-        for (int i = 0; i < NUMBER_OF_QUESTIONS; i++) {
-            gameQuestions.add(new Game.Question(CELEBRITY_NAME + i, QUOTES, EMPTY_ANSWERS));
-        }
-
-        Game game = new Game(gameQuestions, UUID.randomUUID(), 0, 0, new HashMap());
-
-        return game;
     }
 }

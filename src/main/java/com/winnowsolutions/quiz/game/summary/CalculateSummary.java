@@ -18,20 +18,20 @@ public class CalculateSummary {
         this.convertGameToGameEntity = new ConvertGameToGameEntity();
     }
 
-    public GameSummary forGameGuid(UUID gameGuid) {
-        Game game = gameRepository.getGame(gameGuid);
+    public GameSummary forgameUUID(UUID gameUUID) {
+        Game game = gameRepository.getGame(gameUUID);
         GameEntity gameEntity = convertGameToGameEntity.apply(game);
-        return new GameSummary(gameGuid, gameEntity.getScore(), gameEntity.getNumberOfQuestions());
+        return new GameSummary(gameUUID, gameEntity.getScore(), gameEntity.getNumberOfQuestions());
     }
 
     public static class GameSummary {
 
         private final Double score;
-        private final UUID gameGuid;
+        private final UUID gameUUID;
         private final Integer maxScore;
 
-        public GameSummary(UUID gameGuid, Double score, Integer maxScore) {
-            this.gameGuid = gameGuid;
+        public GameSummary(UUID gameUUID, Double score, Integer maxScore) {
+            this.gameUUID = gameUUID;
             this.score = score;
             this.maxScore = maxScore;
         }
@@ -40,7 +40,7 @@ public class CalculateSummary {
         public boolean equals(Object o) {
             GameSummary gameSummary = (GameSummary) o;
             return  score.equals(gameSummary.score) &&
-                    gameGuid.equals(gameSummary.gameGuid) &&
+                    gameUUID.equals(gameSummary.gameUUID) &&
                     maxScore.equals(gameSummary.maxScore);
         }
     }

@@ -15,7 +15,7 @@ public class InMemoryGameRepositoryTest {
     @Test
     public void givenAGameIsCreatedWhenAUserRequestsAGameByIdThenReturnTheAGameRecord() {
         Game expectedGame = GameTestHelper.createCompletedGame();
-        UUID gameUuid = expectedGame.getGameGuid();
+        UUID gameUuid = expectedGame.getgameUUID();
         GameRepository gameRepository = new InMemoryGameRepository();
         gameRepository.createGame(expectedGame);
 
@@ -25,8 +25,8 @@ public class InMemoryGameRepositoryTest {
     @Test
     public void givenAGameIsCreatedWhenAUserUpdatesAndRequestsTheGameByIdThenTheUpdatedGameIsProvided() {
         Game updatedGame = GameTestHelper.createIncompleteGame();
-        Game expectedGame = GameTestHelper.createCompletedGame(updatedGame.getGameGuid());
-        UUID gameUuid = expectedGame.getGameGuid();
+        Game expectedGame = GameTestHelper.createCompletedGame(updatedGame.getgameUUID());
+        UUID gameUuid = expectedGame.getgameUUID();
         GameRepository gameRepository = new InMemoryGameRepository();
         gameRepository.createGame(updatedGame);
         gameRepository.updateGame(expectedGame);

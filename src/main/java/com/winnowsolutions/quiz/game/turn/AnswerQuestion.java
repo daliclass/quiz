@@ -22,8 +22,8 @@ public class AnswerQuestion {
         this.convertToGameEntity = new ConvertGameToGameEntity();
     }
 
-    public Turn answer(String gameGuid, String answer) {
-        Game game = gameRepository.getGame(UUID.fromString(gameGuid));
+    public Turn answer(UUID gameUUID, String answer) {
+        Game game = gameRepository.getGame(gameUUID);
         GameEntity gameEntity = convertToGameEntity.apply(game);
 
         if(gameEntity.isComplete()) {
@@ -48,7 +48,7 @@ public class AnswerQuestion {
 
         return new Game(
                 gameQuestions,
-                gameEntity.getGameGuid(),
+                gameEntity.getgameUUID(),
                 gameEntity.getQuestionNumber(),
                 gameEntity.getQuoteNumber(),
                 gameEntity.getQuestionAnswers());
@@ -67,7 +67,7 @@ public class AnswerQuestion {
 
     private Turn convertToTurn(GameEntity gameEntity) {
         Turn turn = new Turn();
-        turn.gameGuid = gameEntity.getGameGuid().toString();
+        turn.gameUUID = gameEntity.getgameUUID();
         turn.questionNumber = gameEntity.getQuestionNumber();
         turn.numberOfQuestions = gameEntity.getNumberOfQuestions();
         turn.quote = gameEntity.getCurrentQuote();
@@ -78,7 +78,7 @@ public class AnswerQuestion {
 
     private Turn convertToBlankTurn(GameEntity gameEntity) {
         Turn turn = new Turn();
-        turn.gameGuid = gameEntity.getGameGuid().toString();
+        turn.gameUUID = gameEntity.getgameUUID();
         turn.questionNumber = gameEntity.getQuestionNumber();
         turn.numberOfQuestions = gameEntity.getNumberOfQuestions();
         turn.quote = "";

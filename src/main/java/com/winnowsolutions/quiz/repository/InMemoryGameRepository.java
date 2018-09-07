@@ -14,16 +14,16 @@ public class InMemoryGameRepository implements GameRepository {
 
     @Override
     public void createGame(Game game) {
-        gameStore.put(game.getGameGuid(), game);
+        gameStore.put(game.getgameUUID(), game);
     }
 
     @Override
-    public Game getGame(UUID gameGuid) {
-        return gameStore.get(gameGuid);
+    public Game getGame(UUID gameUUID) {
+        return gameStore.get(gameUUID);
     }
 
     @Override
     public void updateGame(Game game) {
-        gameStore.put(game.getGameGuid(), game);
+        gameStore.put(game.getgameUUID(), game);
     }
 }

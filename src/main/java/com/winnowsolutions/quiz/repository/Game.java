@@ -6,18 +6,18 @@ import java.util.UUID;
 
 public class Game {
     private final List<Question> questions;
-    private final UUID gameGuid;
+    private final UUID gameUUID;
     private final Integer questionNumber;
     private final Integer quoteNumber;
     private Map<Integer, List<String>> questionAnswers;
 
     public Game(List<Question> questions,
-                UUID gameGuid,
+                UUID gameUUID,
                 Integer questionNumber,
                 Integer quoteNumber,
                 Map<Integer, List<String>> questionAnswers) {
         this.questions = questions;
-        this.gameGuid = gameGuid;
+        this.gameUUID = gameUUID;
         this.questionNumber = questionNumber;
         this.quoteNumber = quoteNumber;
         this.questionAnswers = questionAnswers;
@@ -27,8 +27,8 @@ public class Game {
         return questions;
     }
 
-    public UUID getGameGuid() {
-        return gameGuid;
+    public UUID getgameUUID() {
+        return gameUUID;
     }
 
     public Integer getQuestionNumber() {
@@ -80,7 +80,7 @@ public class Game {
     public boolean equals(Object o) {
         Game game = (Game) o;
         if (questions.equals(game.questions) &&
-                gameGuid.equals(game.gameGuid) &&
+                gameUUID.equals(game.gameUUID) &&
                 questionNumber.equals(game.questionNumber) &&
                 quoteNumber.equals(game.quoteNumber) &&
                 questionAnswers.equals(game.questionAnswers))

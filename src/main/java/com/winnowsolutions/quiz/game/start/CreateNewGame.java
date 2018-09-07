@@ -67,7 +67,7 @@ public class CreateNewGame {
 
     private Turn convertToTurn(GameEntity gameEntity) {
         Turn turn = new Turn();
-        turn.gameGuid = gameEntity.getGameGuid().toString();
+        turn.gameUUID = gameEntity.getgameUUID();
         turn.questionNumber = gameEntity.getQuestionNumber();
         turn.numberOfQuestions = gameEntity.getNumberOfQuestions();
         turn.quote = gameEntity.getCurrentQuote();

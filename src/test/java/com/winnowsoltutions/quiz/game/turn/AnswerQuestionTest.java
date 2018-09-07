@@ -58,7 +58,7 @@ public class AnswerQuestionTest {
         when(gameRepository.getGame(GAME_GUID)).thenReturn(game);
         AnswerQuestion answerQuestion = new AnswerQuestion(gameRepository);
 
-        Turn turn = answerQuestion.answer(GAME_GUID.toString(), ANSWER);
+        Turn turn = answerQuestion.answer(GAME_GUID, ANSWER);
         assertEquals(expectedTurn(), turn);
     }
 
@@ -75,7 +75,7 @@ public class AnswerQuestionTest {
         when(gameRepository.getGame(GAME_GUID)).thenReturn(game);
         AnswerQuestion answerQuestion = new AnswerQuestion(gameRepository);
 
-        Turn turn = answerQuestion.answer(GAME_GUID.toString(), ANSWER);
+        Turn turn = answerQuestion.answer(GAME_GUID, ANSWER);
         assertEquals(blankTurn(), turn);
     }
 
@@ -105,7 +105,7 @@ public class AnswerQuestionTest {
         when(gameRepository.getGame(GAME_GUID)).thenReturn(game);
         AnswerQuestion answerQuestion = new AnswerQuestion(gameRepository);
 
-        answerQuestion.answer(GAME_GUID.toString(), ANSWER);
+        answerQuestion.answer(GAME_GUID, ANSWER);
         verify(gameRepository).updateGame(expectedGame);
     }
 
@@ -115,7 +115,7 @@ public class AnswerQuestionTest {
         expectedTurn.potentialAnswers = new ArrayList() {{add(ANSWER_QUESTION_TWO);}};
         expectedTurn.numberOfQuestions = 2;
         expectedTurn.questionNumber = 1;
-        expectedTurn.gameGuid = GAME_GUID.toString();
+        expectedTurn.gameUUID = GAME_GUID;
         return expectedTurn;
     }
 
@@ -125,7 +125,7 @@ public class AnswerQuestionTest {
         expectedTurn.potentialAnswers = new ArrayList();
         expectedTurn.numberOfQuestions = 2;
         expectedTurn.questionNumber = 2;
-        expectedTurn.gameGuid = GAME_GUID.toString();
+        expectedTurn.gameUUID = GAME_GUID;
         return expectedTurn;
     }
 }

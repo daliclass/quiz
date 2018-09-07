@@ -10,10 +10,10 @@ public class GameTestHelper {
         return createCompletedGame(UUID.randomUUID());
     }
 
-    public static Game createCompletedGame(UUID gameGuid) {
+    public static Game createCompletedGame(UUID gameUUID) {
         String adam = "Adam";
         String jill = "Jill";
-        UUID gameUuid = gameGuid;
+        UUID gameUuid = gameUUID;
         Integer questionNumber = 10;
         Integer quoteNumber = 0;
         List<Game.Question> questions = new ArrayList(){{
@@ -48,10 +48,10 @@ public class GameTestHelper {
         return createIncompleteGame(UUID.randomUUID());
     }
 
-    public static Game createIncompleteGame(UUID gameGuid) {
+    public static Game createIncompleteGame(UUID gameUUID) {
         String adam = "Adam";
         String jill = "Jill";
-        UUID gameUuid = gameGuid;
+        UUID gameUuid = gameUUID;
         Integer questionNumber = 1;
         Integer quoteNumber = 0;
         List<Game.Question> questions = new ArrayList(){{

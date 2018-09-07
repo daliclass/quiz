@@ -25,12 +25,12 @@ public class CalculateSummaryTest {
     @Test
     public void givenAUserHasCompletedAGameWhenCreatingTheGameSummaryThenCalculateTheUsersScore() {
         Game completedGame = GameTestHelper.createCompletedGame();
-        when(gameRepository.getGame(completedGame.getGameGuid())).thenReturn(completedGame);
+        when(gameRepository.getGame(completedGame.getgameUUID())).thenReturn(completedGame);
         CalculateSummary calculateSummary = new CalculateSummary(gameRepository);
-        CalculateSummary.GameSummary gameSummary = calculateSummary.forGameGuid(completedGame.getGameGuid());
+        CalculateSummary.GameSummary gameSummary = calculateSummary.forgameUUID(completedGame.getgameUUID());
         CalculateSummary.GameSummary expectedGameSummary =
                 new CalculateSummary.GameSummary(
-                            completedGame.getGameGuid(),
+                            completedGame.getgameUUID(),
                             4.5,
                             10
                         );
@@ -40,12 +40,12 @@ public class CalculateSummaryTest {
     @Test
     public void givenAUserHasNotCompletedAGameWhenRequestingTheGameSummaryThenGetTheStateOfThereCurrentGame() {
         Game incompleteGame = GameTestHelper.createIncompleteGame();
-        when(gameRepository.getGame(incompleteGame.getGameGuid())).thenReturn(incompleteGame);
+        when(gameRepository.getGame(incompleteGame.getgameUUID())).thenReturn(incompleteGame);
         CalculateSummary calculateSummary = new CalculateSummary(gameRepository);
-        CalculateSummary.GameSummary gameSummary = calculateSummary.forGameGuid(incompleteGame.getGameGuid());
+        CalculateSummary.GameSummary gameSummary = calculateSummary.forgameUUID(incompleteGame.getgameUUID());
         CalculateSummary.GameSummary expectedGameSummary =
                 new CalculateSummary.GameSummary(
-                        incompleteGame.getGameGuid(),
+                        incompleteGame.getgameUUID(),
                         0.5,
                         3
                 );
