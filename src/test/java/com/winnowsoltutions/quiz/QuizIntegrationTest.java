@@ -1,6 +1,7 @@
 package com.winnowsoltutions.quiz;
 
 import com.winnowsolutions.quiz.Quiz;
+import com.winnowsolutions.quiz.game.summary.CalculateSummary;
 import com.winnowsolutions.quiz.game.turn.Turn;
 import com.winnowsolutions.quiz.question.FileBasedQuestionService;
 import com.winnowsolutions.quiz.question.QuestionService;
@@ -17,7 +18,7 @@ import static org.junit.Assert.assertTrue;
 public class QuizIntegrationTest {
 
     @Test
-    public void whenAUserCompletesAGameThenTheyGetACalculatedSummary() {
+    public void givenAUserStartsAQuizWhenAUserCompletesTheQuizThenTheyGetACalculatedSummary() {
         QuestionService questionService = new FileBasedQuestionService(new File("./src/test/resources/questions.json"));
         GameRepository gameRepository = new InMemoryGameRepository();
         Quiz quiz = new Quiz(questionService, gameRepository);
@@ -42,7 +43,13 @@ public class QuizIntegrationTest {
 
         assertEquals(nextTurn.questionNumber.intValue(), 5);
 
-        // TODO introduce calculateSummary check
+        validateGameSummary(quiz.calculateSummary(originalUUID), 6);
+    }
+
+    public void validateGameSummary(CalculateSummary.GameSummary gameSummary, Integer maxScore) {
+        assertTrue("Score is not populated", gameSummary.getScore() != null);
+        assertTrue("Score is not greater than max score", gameSummary.getScore() <= gameSummary.getMaxScore());
+        assertEquals(maxScore, gameSummary.getMaxScore());
     }
 
     public void validateTurn(Turn turn, Integer questionNumber, UUID gameUUID) {

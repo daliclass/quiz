@@ -43,7 +43,7 @@ public class CreateNewGame {
     private QuestionEntity convertToQuestionEntity(Question question) {
         return new QuestionEntity(
                 question.getCelebrityName(),
-                new ArrayList<String>(question.getQuotes()),
+                new ArrayList(question.getQuotes()),
                 questionService.getCelebrityNames(NUMBER_OF_INCORRECT_ANSWERS_PER_QUESTION));
     }
 
@@ -59,7 +59,7 @@ public class CreateNewGame {
 
         return new Game(
                 gameQuestions,
-                UUID.randomUUID(),
+                gameEntity.getgameUUID(),
                 gameEntity.getQuestionNumber(),
                 gameEntity.getQuoteNumber(),
                 gameEntity.getQuestionAnswers());

@@ -36,6 +36,14 @@ public class CalculateSummary {
             this.maxScore = maxScore;
         }
 
+        public Double getScore() {
+            return score;
+        }
+
+        public Integer getMaxScore() {
+            return maxScore;
+        }
+
         @Override
         public boolean equals(Object o) {
             GameSummary gameSummary = (GameSummary) o;
