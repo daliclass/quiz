@@ -1,0 +1,30 @@
+{
+  "name": "quiz",
+  "version": "1.0.0-snapshot",
+  "description": "client for guess the quote",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --config webpack.config.js"
+  },
+  "keywords": [
+    "quiz",
+    "vue"
+  ],
+  "author": "Mark Haynes",
+  "license": "ISC",
+  "dependencies": {
+    "vue": "^2.5.17",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "@webpack-cli/serve": "^0.1.0",
+    "webpack": "^4.17.2",
+    "webpack-cli": "^3.1.0",
+    "webpack-serve": "^2.0.2",
+    "css-loader": "^1.0.0",
+    "vue-loader": "^15.4.2",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.5.17"
+  }
+}
