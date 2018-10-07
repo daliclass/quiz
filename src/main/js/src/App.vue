@@ -4,7 +4,6 @@
         <h2 id="logo"> QQuiz </h2>
         <nav id="actions">
             <ul>
-                <li><a href="google.com"> Play Game </a></li>
                 <li><a> Road map </a></li>
             </ul>
         </nav>
@@ -14,9 +13,9 @@
         <p>
             A simple quiz to guess who said the quote!
         </p>
-        <button>
-            Play Quiz
-        </button>
+        <a class="button">
+            play now
+        </a>
     </section>
 </div>
 </template>
@@ -35,7 +34,7 @@
 
     h1, h2, h3, p, a {
         font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-        color: #ffffff;
+        color: #fff;
     }
 
     #logo {
@@ -46,7 +45,6 @@
     #actions {
         display: inline-block;
         float: right;
-        padding-right: 2em;
     }
 
     #actions ul {
@@ -56,16 +54,27 @@
     #actions ul li {
         list-style-type: none;
         display: inline;
-        padding-left: 1em;
     }
 
     #control-bar {
         min-height: 5%;
         max-height: 10%;
+        padding-left: 1em;
+        padding-right: 1em;
     }
 
     #content {
-        min-height: 90%;
-        max-height: 90%;
+        text-align: center;
+        padding-top: 13%;
+    }
+
+    .button {
+        background-color: none;
+        padding: 2em;
+        margin: 2em;
+        border-width: 2px;
+        border-color: #fff;
+        border-style: solid;
+        display: inline-block;
     }
 </style>
