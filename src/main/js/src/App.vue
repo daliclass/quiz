@@ -4,18 +4,13 @@
         <h2 id="logo"> QQuiz </h2>
         <nav id="actions">
             <ul>
-                <li><a> Road map </a></li>
+                <li><router-link :to="{name:'quiz-start'}">Home</router-link></li>
+                <li><router-link :to="{name:'road-map'}">Road Map</router-link></li>
             </ul>
         </nav>
     </header>
     <section id="content">
-        <h1> Quote Quiz </h1>
-        <p>
-            A simple quiz to guess who said the quote!
-        </p>
-        <a class="button">
-            play now
-        </a>
+        <router-view />
     </section>
 </div>
 </template>
@@ -66,15 +61,5 @@
     #content {
         text-align: center;
         padding-top: 13%;
-    }
-
-    .button {
-        background-color: none;
-        padding: 2em;
-        margin: 2em;
-        border-width: 2px;
-        border-color: #fff;
-        border-style: solid;
-        display: inline-block;
     }
 </style>
