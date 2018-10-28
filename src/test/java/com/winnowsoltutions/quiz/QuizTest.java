@@ -23,6 +23,7 @@ public class QuizTest {
         GameRepository gameRepository = new InMemoryGameRepository();
         Quiz quiz = new Quiz(questionService, gameRepository);
         Turn turn = quiz.newGame();
+
         UUID originalUUID = turn.gameUUID;
         validateTurn(turn, 0, originalUUID);
 
@@ -40,8 +41,6 @@ public class QuizTest {
 
         nextTurn = quiz.answerQuestion(turn.gameUUID, turn.potentialAnswers.get(0));
         validateTurn(nextTurn, 5, originalUUID);
-
-        assertEquals(nextTurn.questionNumber.intValue(), 5);
 
         validateGameSummary(quiz.calculateSummary(originalUUID), 6);
     }

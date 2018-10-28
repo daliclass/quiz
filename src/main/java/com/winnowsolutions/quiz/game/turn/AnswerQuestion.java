@@ -9,6 +9,7 @@ import com.winnowsolutions.quiz.game.entities.QuestionEntity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -32,7 +33,9 @@ public class AnswerQuestion {
 
         gameEntity.answerQuestion(answer);
         gameEntity.nextQuestion();
+
         gameRepository.updateGame(convertToGame(convertToQuestionEntities(game.getQuestions()), gameEntity));
+
         return convertToTurn(gameEntity);
     }
 
@@ -71,7 +74,13 @@ public class AnswerQuestion {
         turn.questionNumber = gameEntity.getQuestionNumber();
         turn.numberOfQuestions = gameEntity.getNumberOfQuestions();
         turn.quote = gameEntity.getCurrentQuote();
-        turn.potentialAnswers = gameEntity.getCurrentQuestion().getPotentialAnswers();
+
+        QuestionEntity questionEntity = gameEntity.getCurrentQuestion();
+        if (questionEntity == null) {
+            turn.potentialAnswers = new ArrayList();
+        } else {
+            turn.potentialAnswers = gameEntity.getCurrentQuestion().getPotentialAnswers();
+        }
 
         return turn;
     }
