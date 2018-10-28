@@ -98,6 +98,9 @@ public class GameEntity {
     }
 
     public String getCurrentQuote() {
+        if (isComplete()) {
+            return "";
+        }
         return questionEntities.get(questionNumber).getQuotes().get(quoteNumber);
     }
 
