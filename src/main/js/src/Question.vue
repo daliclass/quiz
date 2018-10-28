@@ -1,7 +1,7 @@
 <template>
     <section>
         <h2> "{{ question }}" </h2>
-        <a v-for="answer in answers" class="answer"> {{ answer }} </a>
+        <a v-for="answer in answers" class="answer" @click="answerQuestion(answer)"> {{ answer }} </a>
     </section>
 </template>
 
@@ -9,7 +9,8 @@
     export default {
         props: {
             'question': String,
-            'answers': Array
+            'answers': Array,
+            'answerQuestion': Function
         },
         data: function() {
             return {};
