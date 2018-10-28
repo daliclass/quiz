@@ -1,4 +1,5 @@
-# TODO
-1. Add http endpoints
-2. Acceptance tests
-3. Begin work on UI
+# Guess the quote
+A simple quiz built to learn Vue.
+
+## Road map
+1. Addition of questions from a source like good reads
